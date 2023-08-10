@@ -1,6 +1,5 @@
 <template>
   <Header />
-  <Search />
 
   <div class="container">
     <Banner @click="onClose" />
@@ -13,14 +12,12 @@
 import Header from "./components/Header.vue";
 import Banner from "./components/Banner.vue";
 import Card from "./components/card.vue";
-import Search from "./components/Search.vue";
 
 export default {
   components: {
     Header,
     Banner,
     Card,
-    Search,
   },
 };
 </script>

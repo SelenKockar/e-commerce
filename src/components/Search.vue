@@ -1,36 +1,48 @@
 <template>
-  <div class="search-bar">
-    <div class="search-input">
-      <input class="search" placeholder="Search..." />
-      <i class="pi pi-search search-icon"></i>
-    </div>
+  <div class="icon-container">
+    <input
+      v-model="searchTerm"
+      type="text"
+      class="search-box"
+      placeholder="Search..."
+    />
+    <i class="pi pi-search search-icon"></i>
   </div>
 </template>
 
-<script></script>
-<style>
-.search {
-  width: 300px;
-  align-items: center;
-  flex-shrink: 0;
-  border-radius: 10px;
-  border: 2px solid #000;
-  background: #fff;
-  margin-left: 10px;
-  height: 25px;
-  position: relative;
-}
-.search-bar {
-  align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
-  margin: 5px;
-  padding: 0 2rem;
-}
-.search-input {
+<script>
+export default {
+  data() {
+    return {
+      searchTerm: "",
+    };
+  },
+};
+</script>
+
+<style scoped>
+.icon-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
+  border: 1px solid black;
+  padding: 8px;
+  border-radius: 10px;
+  background-color: #fff;
+  width: 300px;
+}
+
+.search-box {
+  border: none;
+  outline: none;
+  padding: 8px;
+  width: 200px;
+  border-radius: 4px 0 0 4px;
+}
+
+.pi {
+  font-size: 18px;
+  color: #333;
+  margin-left: 50px;
+  cursor: pointer;
 }
 </style>
