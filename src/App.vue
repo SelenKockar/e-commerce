@@ -4,7 +4,7 @@
   <div class="container">
     <Banner @click="onClose" />
 
-    <Card />
+    <Card v-for="product in products" :key="product.id" :_product="product" />
   </div>
 </template>
 
@@ -18,6 +18,26 @@ export default {
     Header,
     Banner,
     Card,
+  },
+  data() {
+    return {
+      products: [],
+    };
+  },
+  methods: {
+    async fetchProducts() {
+      try {
+        const response = await fetch("https://fakestoreapi.com/products");
+        const data = await response.json();
+        this.products = data;
+        console.log(this.products);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
+  created() {
+    this.fetchProducts();
   },
 };
 </script>
