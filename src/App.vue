@@ -10,7 +10,7 @@
 
 <script>
 import Header from "./components/Header.vue";
-import Banner from "./components/Banner.vue";
+import Banner from "./components/banner.vue";
 import Card from "./components/card.vue";
 
 export default {
