@@ -1,17 +1,24 @@
 <template>
   <Header />
-
+  <router-link to="/"> Home </router-link>
+  <router-view></router-view>
   <div class="container">
     <Banner @click="onClose" />
 
-    <Card v-for="product in products" :key="product.id" :_product="product" />
+    <Card
+      v-for="product in filteredProducts || products"
+      :key="product.id"
+      :_product="product"
+    />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
-import Banner from "./components/banner.vue";
+import Banner from "./components/Banner.vue";
 import Card from "./components/card.vue";
+import { productStore } from "../store/store";
+import { mapState, mapActions } from "pinia";
 
 export default {
   components: {
@@ -19,25 +26,14 @@ export default {
     Banner,
     Card,
   },
-  data() {
-    return {
-      products: [],
-    };
-  },
-  methods: {
-    async fetchProducts() {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        const data = await response.json();
-        this.products = data;
-        console.log(this.products);
-      } catch (error) {
-        console.error(error);
-      }
-    },
-  },
   created() {
     this.fetchProducts();
+  },
+  methods: {
+    ...mapActions(productStore, ["fetchProducts"]),
+  },
+  computed: {
+    ...mapState(productStore, ["products", "filteredProducts"]),
   },
 };
 </script>

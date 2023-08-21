@@ -6,7 +6,9 @@
         <p class="product-title">{{ _product?.title }}</p>
         <p class="price-info">{{ _product?.price }} $</p>
       </div>
-      <button class="product-detail">View</button>
+      <router-link to="/product">
+        <button class="product-detail">View</button>
+      </router-link>
     </div>
   </div>
 </template>

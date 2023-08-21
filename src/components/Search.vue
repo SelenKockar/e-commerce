@@ -1,7 +1,9 @@
+// Search.vue
 <template>
   <div class="icon-container">
     <input
       v-model="searchTerm"
+      @input="updateSearchTerm(searchTerm)"
       type="text"
       class="search-box"
       placeholder="Search..."
@@ -11,11 +13,20 @@
 </template>
 
 <script>
+import { productStore } from "../../store/store";
+import { mapActions, mapState } from "pinia";
+
 export default {
   data() {
     return {
       searchTerm: "",
     };
+  },
+  methods: {
+    ...mapActions(productStore, ["updateSearchTerm"]),
+  },
+  computed: {
+    ...mapState(productStore, ["products"]),
   },
 };
 </script>
