@@ -1,15 +1,8 @@
 <template>
   <Header />
   <router-link to="/"> Home </router-link>
-  <router-view></router-view>
   <div class="container">
-    <Banner @click="onClose" />
-
-    <Card
-      v-for="product in filteredProducts || products"
-      :key="product.id"
-      :_product="product"
-    />
+    <router-view></router-view>
   </div>
 </template>
 

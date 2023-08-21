@@ -6,19 +6,42 @@
         <p class="product-title">{{ _product?.title }}</p>
         <p class="price-info">{{ _product?.price }} $</p>
       </div>
-      <router-link to="/product">
-        <button class="product-detail">View</button>
-      </router-link>
+      <button v-if="minimal" class="product-detail" @click="increment">
+        Add to Cart
+      </button>
+      <button
+        v-else
+        class="product-detail"
+        @click="goProductDetail(_product.id)"
+      >
+        View
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import { productStore } from "../../store/store";
+import { mapActions } from "pinia";
+
 export default {
   props: {
     _product: {
       type: Object,
       default: () => {},
+    },
+    minimal: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  methods: {
+    ...mapActions(productStore, ["increment"]),
+    goProductDetail(id) {
+      this.$router.push({
+        name: "Product",
+        query: { id },
+      });
     },
   },
 };

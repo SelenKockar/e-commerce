@@ -21,17 +21,23 @@
       <div class="cart-bar">
         <i class="pi pi-shopping-cart cart-icon"></i>
         <h3 class="cart">Cart</h3>
+        <h4 class="cart-badge">{{ cartState }}</h4>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { productStore } from "../../store/store";
+import { mapState } from "pinia";
 import Search from "../components/Search.vue";
 
 export default {
   components: {
     Search,
+  },
+  computed: {
+    ...mapState(productStore, ["cartState"]),
   },
 };
 </script>
@@ -58,6 +64,20 @@ export default {
   flex-shrink: 0;
   margin: 5px;
   gap: 5px;
+}
+
+.cart-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-left: 0.5rem;
+  background-color: rgba(167, 33, 97, 0.7);
+  color: white;
+  border-radius: 50%;
+  padding: 0.5rem;
 }
 
 .search-icon {

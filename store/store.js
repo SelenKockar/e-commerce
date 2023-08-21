@@ -5,9 +5,10 @@ export const productStore = defineStore("productStore", {
     state: () => ({
         products: [],
         searchTerm: "",
+        cartState: 0
     }),
     getters: {
-        filteredProducts() {
+        productList() {
             if (this.searchTerm.trim().length === 0) return this.products;
             return this.products.filter(p => p.title.includes(this.searchTerm));
         }
@@ -24,6 +25,10 @@ export const productStore = defineStore("productStore", {
             } catch (error) {
                 console.error(error);
             }
+        },
+        increment(){
+            this.cartState++
         }
-    }
-});
+}
+}
+);
