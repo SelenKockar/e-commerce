@@ -1,12 +1,16 @@
-<template><Card :_product="product" minimal /></template>
+<template>
+  <div>
+    <Detail :_product="product" minimal />
+  </div>
+</template>
 <script>
-import Card from "../components/card.vue";
+import Detail from "../components/Detail.vue";
 import { productStore } from "../../store/store";
 import { mapState, mapActions } from "pinia";
 
 export default {
   components: {
-    Card,
+    Detail,
   },
   data() {
     return {

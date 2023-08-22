@@ -9,6 +9,7 @@
 import Header from "./components/Header.vue";
 import Banner from "./components/Banner.vue";
 import Card from "./components/card.vue";
+import Detail from "./components/Detail.vue";
 import { productStore } from "../store/store";
 import { mapState, mapActions } from "pinia";
 
@@ -17,6 +18,7 @@ export default {
     Header,
     Banner,
     Card,
+    Detail,
   },
   created() {
     this.fetchProducts();

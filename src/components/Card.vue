@@ -30,10 +30,6 @@ export default {
       type: Object,
       default: () => {},
     },
-    minimal: {
-      type: Boolean,
-      default: false,
-    },
   },
   methods: {
     ...mapActions(productStore, ["increment"]),
