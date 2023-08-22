@@ -1,4 +1,4 @@
-<template><Card :_product="getSingleProduct(2)" minimal /></template>
+<template><Card :_product="product" minimal /></template>
 <script>
 import Card from "../components/card.vue";
 import { productStore } from "../../store/store";
@@ -8,12 +8,20 @@ export default {
   components: {
     Card,
   },
+  data() {
+    return {
+      product: {},
+      id: this.$route.query.id,
+    };
+  },
+
   methods: {
     async getSingleProduct(id) {
       try {
         const response = await fetch(`https://fakestoreapi.com/products/${id}`);
         const data = await response.json();
-        return data;
+
+        this.product = data;
       } catch (error) {
         console.error(error);
       }
@@ -22,5 +30,10 @@ export default {
   computed: {
     ...mapState(productStore, ["products"]),
   },
+  mounted() {
+    this.getSingleProduct(this.id);
+  },
 };
 </script>
+
+<style></style>

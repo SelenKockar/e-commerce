@@ -1,6 +1,5 @@
 <template>
   <Header />
-  <router-link to="/"> Home </router-link>
   <div class="container">
     <router-view></router-view>
   </div>

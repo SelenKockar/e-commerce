@@ -22,7 +22,7 @@
 
 <script>
 import { productStore } from "../../store/store";
-import { mapActions } from "pinia";
+import { mapState, mapActions } from "pinia";
 
 export default {
   props: {

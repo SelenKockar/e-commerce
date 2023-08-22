@@ -2,7 +2,9 @@
   <div class="header">
     <div class="header-left">
       <div class="hero-brand">
-        <h3 class="brand">BRAND</h3>
+        <router-link to="/" class="link">
+          <h3 class="brand">BRAND</h3>
+        </router-link>
       </div>
 
       <div class="hero-group">
@@ -64,6 +66,11 @@ export default {
   flex-shrink: 0;
   margin: 5px;
   gap: 5px;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
 }
 
 .cart-badge {
