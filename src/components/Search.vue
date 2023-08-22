@@ -23,6 +23,7 @@ export default {
     };
   },
   methods: {
+    // emit
     ...mapActions(productStore, ["updateSearchTerm"]),
   },
   computed: {

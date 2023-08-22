@@ -1,24 +1,19 @@
 <template>
-  <Header />
+  <AppHeader />
   <div class="container">
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Header from "./components/Header.vue";
-import Banner from "./components/Banner.vue";
-import Card from "./components/card.vue";
-import Detail from "./components/Detail.vue";
+import AppHeader from "./components/AppHeader.vue";
+
 import { productStore } from "../store/store";
 import { mapState, mapActions } from "pinia";
 
 export default {
   components: {
-    Header,
-    Banner,
-    Card,
-    Detail,
+    AppHeader,
   },
   created() {
     this.fetchProducts();

@@ -6,7 +6,7 @@
 <script>
 import Detail from "../components/Detail.vue";
 import { productStore } from "../../store/store";
-import { mapState, mapActions } from "pinia";
+import { mapState } from "pinia";
 
 export default {
   components: {
@@ -15,11 +15,12 @@ export default {
   data() {
     return {
       product: {},
-      id: this.$route.query.id,
+      id: this.$route.params.id,
     };
   },
 
   methods: {
+    // should be store action
     async getSingleProduct(id) {
       try {
         const response = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -39,5 +40,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

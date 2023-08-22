@@ -7,6 +7,7 @@
         </router-link>
       </div>
 
+      <!-- need ul-li -->
       <div class="hero-group">
         <h3 class="women">Women</h3>
         <h3 class="men">Men</h3>
@@ -16,10 +17,12 @@
     </div>
     <Search />
     <div class="icon-bar">
+      <!-- component -->
       <div class="profile-bar">
         <i class="pi pi-user user-icon"></i>
         <h3 class="profile">Profile</h3>
       </div>
+      <!-- component -->
       <div class="cart-bar">
         <i class="pi pi-shopping-cart cart-icon"></i>
         <h3 class="cart">Cart</h3>

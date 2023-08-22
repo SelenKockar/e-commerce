@@ -9,13 +9,7 @@
       <button v-if="minimal" class="product-detail" @click="increment">
         Add to Cart
       </button>
-      <button
-        v-else
-        class="product-detail"
-        @click="goProductDetail(_product.id)"
-      >
-        View
-      </button>
+      <button v-else class="product-detail" @click="onClick()">View</button>
     </div>
   </div>
 </template>
@@ -32,16 +26,21 @@ export default {
     },
   },
   methods: {
+    // need emit
     ...mapActions(productStore, ["increment"]),
-    goProductDetail(id) {
+    /*  goProductDetail(id) {
       this.$router.push({
         name: "Product",
         query: { id },
       });
+    }, */
+    onClick() {
+      this.$emit("product:detail", this._product);
     },
   },
 };
 
+// Need css fix https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow
 const productTitleElements = document.querySelectorAll(".product-title");
 
 productTitleElements.forEach((element) => {

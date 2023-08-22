@@ -1,7 +1,12 @@
 <template>
-  <Banner @click="onClose" />
+  <Banner />
 
-  <Card v-for="product in productList" :key="product.id" :_product="product" />
+  <Card
+    v-for="product in productList"
+    :key="product.id"
+    :_product="product"
+    @product:detail="onRedirectDetail"
+  />
 </template>
 
 <script>
@@ -20,6 +25,12 @@ export default {
   },
   methods: {
     ...mapActions(productStore, ["fetchProducts"]),
+    onRedirectDetail(product) {
+      this.$router.push({
+        name: "Product",
+        params: { id: product.id },
+      });
+    },
   },
   computed: {
     ...mapState(productStore, ["products", "productList"]),
