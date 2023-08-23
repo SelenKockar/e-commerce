@@ -1,11 +1,11 @@
 <template>
   <div>
-    <Detail :_product="product" minimal />
+    <Detail :_product="product" />
   </div>
 </template>
 <script>
 import Detail from "../components/Detail.vue";
-import { productStore } from "../../store/store";
+import { productStore } from "../store/store";
 import { mapState } from "pinia";
 
 export default {

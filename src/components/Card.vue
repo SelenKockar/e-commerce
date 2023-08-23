@@ -6,16 +6,13 @@
         <p class="product-title">{{ _product?.title }}</p>
         <p class="price-info">{{ _product?.price }} $</p>
       </div>
-      <button v-if="minimal" class="product-detail" @click="increment">
-        Add to Cart
-      </button>
-      <button v-else class="product-detail" @click="onClick()">View</button>
+      <button class="product-detail" @click="onClick()">View</button>
     </div>
   </div>
 </template>
 
 <script>
-import { productStore } from "../../store/store";
+import { productStore } from "../store/store";
 import { mapState, mapActions } from "pinia";
 
 export default {

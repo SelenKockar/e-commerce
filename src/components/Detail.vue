@@ -1,18 +1,18 @@
 <template>
-  <div class="custom-card">
-    <img class="image" :src="_product?.image" />
-    <p class="product-title2">{{ _product?.title }}</p>
-    <p class="product-description">{{ _product?.description }}</p>
-    <div class="purchase-box">
-      <p class="price-info">{{ _product?.price }} $</p>
-      <button v-if="minimal" class="product-detail" @click="increment">
-        Add to Cart
-      </button>
+  <div class="big-box2">
+    <div class="custom-card">
+      <img class="image" :src="_product?.image" />
+      <p class="product-title2">{{ _product?.title }}</p>
+      <p class="product-description">{{ _product?.description }}</p>
+      <div class="purchase-box">
+        <p class="price-info">{{ _product?.price }} $</p>
+        <button class="product-detail" @click="increment">Add to Cart</button>
+      </div>
     </div>
   </div>
 </template>
 <script>
-import { productStore } from "../../store/store";
+import { productStore } from "../store/store";
 import { mapState, mapActions } from "pinia";
 
 export default {
@@ -20,10 +20,6 @@ export default {
     _product: {
       type: Object,
       default: () => {},
-    },
-    minimal: {
-      type: Boolean,
-      default: false,
     },
   },
   methods: {
