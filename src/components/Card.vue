@@ -6,7 +6,10 @@
         <p class="product-title">{{ _product?.title }}</p>
         <p class="price-info">{{ _product?.price }} $</p>
       </div>
-      <button class="product-detail" @click="onClick()">View</button>
+      <div class="button-section">
+        <button class="product-detail" @click="onClick()">View</button>
+        <button class="product-detail" @click="increment">Add to Cart</button>
+      </div>
     </div>
   </div>
 </template>
@@ -86,6 +89,7 @@ productTitleElements.forEach((element) => {
   margin-left: 10px;
 }
 .product-detail {
+  display: inline-block;
   border-radius: 0.7rem;
   background-color: rgba(167, 33, 97, 0.7);
   color: white;
@@ -102,5 +106,9 @@ productTitleElements.forEach((element) => {
 }
 .price-info {
   color: rgba(167, 33, 97, 0.7);
+}
+.button-section {
+  display: flex;
+  flex-direction: row;
 }
 </style>
