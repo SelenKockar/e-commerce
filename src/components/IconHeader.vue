@@ -2,7 +2,7 @@
   <div class="cart-bar">
     <i :class="icon"></i>
     <h3 class="cart">{{ text }}</h3>
-    <h4 class="cart-badge">{{ cartState }}</h4>
+    <h4 v-if="showBadge" class="cart-badge">{{ cartState }}</h4>
   </div>
 </template>
 
@@ -23,6 +23,10 @@ export default {
     text: {
       type: String,
       default: "",
+    },
+    showBadge: {
+      type: Boolean,
+      default: true,
     },
   },
 

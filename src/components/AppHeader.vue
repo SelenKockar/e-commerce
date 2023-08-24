@@ -7,39 +7,41 @@
         </router-link>
       </div>
 
-      <!-- need ul-li -->
-      <div class="hero-group">
-        <h3 class="women">Women</h3>
-        <h3 class="men">Men</h3>
-        <h3 class="kids">Kids</h3>
-        <h3 class="sale">Sale</h3>
-      </div>
+      <ul class="header-group">
+        <li class="women">Women</li>
+        <li class="men">Men</li>
+        <li class="kids">Kids</li>
+        <li class="sale">Sale</li>
+      </ul>
     </div>
     <Search />
-    <div class="icon-bar">
-      <!-- component -->
-      <div class="profile-bar">
-        <i class="pi pi-user user-icon"></i>
-        <h3 class="profile">Profile</h3>
-      </div>
-      <!-- component -->
-      <div class="cart-bar">
-        <i class="pi pi-shopping-cart cart-icon"></i>
-        <h3 class="cart">Cart</h3>
-        <h4 class="cart-badge">{{ cartState }}</h4>
-      </div>
+    <div class="icon-group">
+      <IconHeader
+        class="profile-bar"
+        icon="pi pi-user"
+        text="Profile"
+        :showBadge="false"
+      ></IconHeader>
+      <IconHeader
+        class="cart-bar"
+        icon="pi pi-shopping-cart"
+        text="Card"
+        :showBadge="true"
+      ></IconHeader>
     </div>
   </div>
 </template>
 
 <script>
-import { productStore } from "../../store/store";
+import { productStore } from "../store/store";
 import { mapState } from "pinia";
 import Search from "../components/Search.vue";
+import IconHeader from "./IconHeader.vue";
 
 export default {
   components: {
     Search,
+    IconHeader,
   },
   computed: {
     ...mapState(productStore, ["cartState"]),
@@ -62,32 +64,9 @@ export default {
   display: flex;
 }
 
-.icon-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
-  margin: 5px;
-  gap: 5px;
-}
-
 .link {
   text-decoration: none;
   color: black;
-}
-
-.cart-badge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  width: 0.5rem;
-  height: 0.5rem;
-  margin-left: 0.5rem;
-  background-color: rgba(167, 33, 97, 0.7);
-  color: white;
-  border-radius: 50%;
-  padding: 0.5rem;
 }
 
 .search-icon {
@@ -95,25 +74,21 @@ export default {
   margin-left: 5px;
   font-size: 1.5rem;
 }
-.user-icon {
-  font-size: 15px;
-  border: solid 0.5px;
-  border-radius: 15px;
-  padding: 2px;
-  margin-left: 10px;
-  margin-right: 4.95px;
-}
-.cart-icon {
-  margin-right: 6.23px;
-  font-size: 20px;
-}
 
-.hero-group {
+.header-group {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 30px;
   padding: 0 2rem;
+  list-style: none;
+  font-weight: bold;
+}
+
+.cart-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .profile-bar {
   display: flex;
@@ -121,9 +96,8 @@ export default {
   align-items: center;
   margin-right: 20px;
 }
-.cart-bar {
+.icon-group {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 </style>
