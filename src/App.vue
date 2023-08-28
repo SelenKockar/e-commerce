@@ -8,7 +8,7 @@
 <script>
 import AppHeader from "./components/AppHeader.vue";
 
-import { productStore } from "../store/store";
+import { productStore } from "./store/store";
 import { mapState, mapActions } from "pinia";
 
 export default {

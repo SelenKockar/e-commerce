@@ -12,7 +12,7 @@
 <script>
 import Banner from "../components/Banner.vue";
 import Card from "../components/card.vue";
-import { productStore } from "../../store/store";
+import { productStore } from "../store/store";
 import { mapState, mapActions } from "pinia";
 
 export default {

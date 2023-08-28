@@ -14,20 +14,36 @@
         <li class="sale">Sale</li>
       </ul>
     </div>
+    <div class="topbar-menu">
+      <button
+        @click="togglePanel"
+        type="button"
+        class="pi pi-ellipsis-v"
+      ></button>
+      <div class="panel-container">
+        <div type="menu" v-if="isPanelOpen" class="panel">
+          <span>Women</span>
+          <span>Men</span>
+          <span>Kids</span>
+          <span>Sale</span>
+        </div>
+      </div>
+    </div>
+
     <Search />
     <div class="icon-group">
-      <IconHeader
+      <MenuTextButton
         class="profile-bar"
         icon="pi pi-user"
         text="Profile"
         :showBadge="false"
-      ></IconHeader>
-      <IconHeader
+      ></MenuTextButton>
+      <MenuTextButton
         class="cart-bar"
         icon="pi pi-shopping-cart"
         text="Card"
         :showBadge="true"
-      ></IconHeader>
+      ></MenuTextButton>
     </div>
   </div>
 </template>
@@ -36,15 +52,37 @@
 import { productStore } from "../store/store";
 import { mapState } from "pinia";
 import Search from "../components/Search.vue";
-import IconHeader from "./IconHeader.vue";
+import MenuTextButton from "./MenuTextButton.vue";
 
 export default {
+  data() {
+    return {
+      isPanelOpen: false,
+      isMobile: false,
+    };
+  },
+  created: {},
+  methods: {
+    togglePanel() {
+      this.isPanelOpen = !this.isPanelOpen;
+    },
+    checkMobile() {
+      this.isMobile = window.innerWidth <= 768;
+    },
+  },
   components: {
     Search,
-    IconHeader,
+    MenuTextButton,
   },
   computed: {
     ...mapState(productStore, ["cartState"]),
+  },
+  created() {
+    this.checkMobile();
+    window.addEventListener("resize", this.checkMobile);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.checkMobile);
   },
 };
 </script>
@@ -99,5 +137,33 @@ export default {
 .icon-group {
   display: flex;
   align-items: center;
+}
+.pi {
+  border: none;
+  background-color: white;
+  color: black;
+  font-size: 1.2rem;
+}
+
+.panel {
+  transform-origin: top;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+.panel.active {
+  max-height: 100px;
+}
+@media (max-width: 100%) {
+  .topbar-menu button {
+    display: block;
+  }
+
+  .panel-container {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+  }
 }
 </style>
