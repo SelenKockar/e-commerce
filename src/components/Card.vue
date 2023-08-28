@@ -8,7 +8,9 @@
       </div>
       <div class="button-section">
         <button class="product-detail" @click="onClick()">View</button>
-        <button class="product-detail" @click="increment">Add to Cart</button>
+        <button class="product-detail" @click="incrementCartState">
+          Add to Cart
+        </button>
       </div>
     </div>
   </div>
@@ -26,30 +28,16 @@ export default {
     },
   },
   methods: {
-    // need emit
-    ...mapActions(productStore, ["increment"]),
-    /*  goProductDetail(id) {
-      this.$router.push({
-        name: "Product",
-        query: { id },
-      });
-    }, */
+    ...mapActions(productStore, ["incrementCartState"]),
+
     onClick() {
       this.$emit("product:detail", this._product);
     },
   },
+  mounted() {
+    this.cartState = this.incrementCartState;
+  },
 };
-
-// Need css fix https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow
-const productTitleElements = document.querySelectorAll(".product-title");
-
-productTitleElements.forEach((element) => {
-  const text = element.textContent;
-  const maxLength = 50;
-  if (text.length > maxLength) {
-    element.textContent = text.slice(0, maxLength) + "...";
-  }
-});
 </script>
 <style>
 .big-box {

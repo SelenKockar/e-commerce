@@ -1,42 +1,41 @@
 <template>
   <div>
-    <Detail :_product="product" />
+    <div class="big-box2">
+      <div class="custom-card">
+        <img class="image" :src="product?.image" />
+        <p class="product-title2">{{ product?.title }}</p>
+        <p class="product-description">{{ product?.description }}</p>
+        <div class="purchase-box">
+          <p class="price-info">{{ product?.price }} $</p>
+          <button class="product-detail" @click="incrementCartState">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
-import Detail from "../components/Detail.vue";
 import { productStore } from "../store/store";
-import { mapState } from "pinia";
+import { mapActions } from "pinia";
 
 export default {
-  components: {
-    Detail,
-  },
   data() {
     return {
       product: {},
       id: this.$route.params.id,
+      cartState: 0,
     };
   },
 
   methods: {
-    // should be store action
-    async getSingleProduct(id) {
-      try {
-        const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-        const data = await response.json();
+    ...mapActions(productStore, ["getSingleProduct"]),
+    ...mapActions(productStore, ["incrementCartState"]),
+  },
 
-        this.product = data;
-      } catch (error) {
-        console.error(error);
-      }
-    },
-  },
-  computed: {
-    ...mapState(productStore, ["products"]),
-  },
   mounted() {
-    this.getSingleProduct(this.id);
+    this.product = this.getSingleProduct(this.id);
+    this.cartState = this.incrementCartState;
   },
 };
 </script>
