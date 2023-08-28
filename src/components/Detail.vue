@@ -24,12 +24,6 @@ export default {
   },
   methods: {
     ...mapActions(productStore, ["increment"]),
-    goProductDetail(id) {
-      this.$router.push({
-        name: "Product",
-        query: { id },
-      });
-    },
   },
 };
 </script>
