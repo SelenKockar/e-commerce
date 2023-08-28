@@ -39,3 +39,27 @@ export default {
   },
 };
 </script>
+<style>
+.custom-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.product-title2 {
+  border: solid rgba(167, 33, 97, 0.7);
+  border-radius: 10px;
+  padding: 2px;
+}
+.product-description {
+  border: solid rgba(167, 33, 97, 0.7);
+  border-radius: 10px;
+  padding: 2px;
+  width: 300px;
+}
+.purchase-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  vertical-align: baseline;
+}
+</style>
