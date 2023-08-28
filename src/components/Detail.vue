@@ -6,24 +6,25 @@
       <p class="product-description">{{ _product?.description }}</p>
       <div class="purchase-box">
         <p class="price-info">{{ _product?.price }} $</p>
-        <button class="product-detail" @click="increment">Add to Cart</button>
+        <button class="product-detail" @click="incrementCartState">
+          Add to Cart
+        </button>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { productStore } from "../store/store";
-import { mapState, mapActions } from "pinia";
-
 export default {
-  props: {
-    _product: {
-      type: Object,
-      default: () => {},
-    },
+  data() {
+    return {
+      product: {},
+      id: this.$route.params.id,
+      cartState: 0,
+    };
   },
-  methods: {
-    ...mapActions(productStore, ["increment"]),
+
+  mounted() {
+    this.cartState = this.incrementCartState;
   },
 };
 </script>
