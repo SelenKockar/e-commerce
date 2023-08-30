@@ -1,17 +1,24 @@
 <template>
-  <div>
-    <div class="big-box2">
-      <div class="custom-card">
-        <img class="image" :src="product?.image" />
-        <p class="product-title2">{{ product?.title }}</p>
-        <p class="product-description">{{ product?.description }}</p>
-        <div class="purchase-box">
-          <p class="price-info">{{ product?.price }} $</p>
-          <button class="product-detail" @click="incrementCartState">
-            Add to Cart
-          </button>
-        </div>
-      </div>
+  <div class="big-box">
+    <img class="image" :src="product?.image" />
+    <div class="detail-container">
+      <p class="product-title">{{ product?.title }}</p>
+      <p class="product-description">{{ product?.description }}</p>
+      <p class="price-info">{{ product?.price }} $</p>
+      <button class="product-detail" @click="incrementCartState">
+        Add to Cart
+      </button>
+    </div>
+  </div>
+  <div class="big-box-mobile">
+    <img class="image" :src="product?.image" />
+    <div class="detail-container">
+      <p class="product-title">{{ product?.title }}</p>
+      <p class="product-description">{{ product?.description }}</p>
+      <p class="price-info">{{ product?.price }} $</p>
+      <button class="product-detail" @click="incrementCartState">
+        Add to Cart
+      </button>
     </div>
   </div>
 </template>
@@ -39,27 +46,70 @@ export default {
   },
 };
 </script>
-<style>
-.custom-card {
+<style scoped>
+.big-box {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 76px;
 }
-.product-title2 {
-  border: solid rgba(167, 33, 97, 0.7);
-  border-radius: 10px;
-  padding: 2px;
+.detail-container {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  max-height: 350px;
+  padding: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 .product-description {
-  border: solid rgba(167, 33, 97, 0.7);
-  border-radius: 10px;
   padding: 2px;
   width: 300px;
+  flex: 1 0 0;
+  align-self: stretch;
 }
-.purchase-box {
+
+.image {
+  display: inline-block;
+  width: 100%;
+  max-width: 300px;
+  height: 100%;
+  max-height: 400px;
+}
+.product-title {
+  flex: 1 0 0;
+  align-self: stretch;
+}
+.price-info {
+  flex: 1 0 0;
+  align-self: stretch;
+}
+.product-detail {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  vertical-align: baseline;
+  width: 169px;
+  height: 39px;
+  padding: 7px 14px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+.big-box-mobile {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 76px;
+}
+@media screen and (max-width: 750px) {
+  .big-box {
+    display: none;
+  }
+}
+@media screen and (min-width: 750px) {
+  .big-box-mobile {
+    display: none;
+  }
 }
 </style>
