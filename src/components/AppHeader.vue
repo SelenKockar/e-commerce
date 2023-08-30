@@ -1,34 +1,133 @@
 <template>
-  <div class="header">
-    <div class="header-left">
-      <div class="hero-brand">
-        <router-link to="/" class="link">
-          <h3 class="brand">BRAND</h3>
-        </router-link>
-      </div>
+  <header class="header">
+    <router-link to="/" class="link">
+      <svg
+        class="brand-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        width="58"
+        height="59"
+        viewBox="0 0 58 59"
+        fill="none"
+      >
+        <mask
+          id="mask0_71_125"
+          style="mask-type: alpha"
+          maskUnits="userSpaceOnUse"
+          x="0"
+          y="0"
+          width="58"
+          height="59"
+        >
+          <circle cx="28.5918" cy="29.5" r="28.5918" fill="#C4C4C4" />
+        </mask>
+        <g mask="url(#mask0_71_125)">
+          <circle
+            cx="14.9897"
+            cy="-4.16938"
+            r="23.7214"
+            transform="rotate(-22 14.9897 -4.16938)"
+            fill="#A72161"
+            fill-opacity="0.7"
+          />
+          <circle
+            cx="42.1967"
+            cy="63.1685"
+            r="23.7214"
+            transform="rotate(-22 42.1967 63.1685)"
+            fill="#A72161"
+            fill-opacity="0.7"
+          />
+          <circle
+            cx="-5.07577"
+            cy="43.1031"
+            r="23.7214"
+            transform="rotate(-22 -5.07577 43.1031)"
+            fill="#A72161"
+            fill-opacity="0.37"
+          />
+          <circle
+            cx="61.6381"
+            cy="14.3545"
+            r="23.7214"
+            transform="rotate(-22 61.6381 14.3545)"
+            fill="#A72161"
+            fill-opacity="0.37"
+          />
+        </g>
+      </svg>
+    </router-link>
 
-      <ul class="header-group">
+    <ul class="header-group">
+      <li class="women">Women</li>
+      <li class="men">Men</li>
+      <li class="kids">Kids</li>
+      <li class="sale">Sale</li>
+    </ul>
+    <div class="dropdown-menu">
+      <i @click="toggleMobilePanel" class="pi pi-ellipsis-v"></i>
+      <ul v-show="isPanelOpen" class="dropdown-panel">
         <li class="women">Women</li>
         <li class="men">Men</li>
         <li class="kids">Kids</li>
         <li class="sale">Sale</li>
       </ul>
     </div>
-    <div class="topbar-menu">
-      <button
-        @click="togglePanel"
-        type="button"
-        class="pi pi-ellipsis-v"
-      ></button>
-      <div class="panel-container">
-        <div type="menu" v-if="isPanelOpen" class="panel">
-          <span>Women</span>
-          <span>Men</span>
-          <span>Kids</span>
-          <span>Sale</span>
-        </div>
-      </div>
-    </div>
+    <router-link to="/" class="link2">
+      <svg
+        class="mobile-brand-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        width="58"
+        height="59"
+        viewBox="0 0 58 59"
+        fill="none"
+      >
+        <mask
+          id="mask0_71_125"
+          style="mask-type: alpha"
+          maskUnits="userSpaceOnUse"
+          x="0"
+          y="0"
+          width="58"
+          height="59"
+        >
+          <circle cx="28.5918" cy="29.5" r="28.5918" fill="#C4C4C4" />
+        </mask>
+        <g mask="url(#mask0_71_125)">
+          <circle
+            cx="14.9897"
+            cy="-4.16938"
+            r="23.7214"
+            transform="rotate(-22 14.9897 -4.16938)"
+            fill="#A72161"
+            fill-opacity="0.7"
+          />
+          <circle
+            cx="42.1967"
+            cy="63.1685"
+            r="23.7214"
+            transform="rotate(-22 42.1967 63.1685)"
+            fill="#A72161"
+            fill-opacity="0.7"
+          />
+          <circle
+            cx="-5.07577"
+            cy="43.1031"
+            r="23.7214"
+            transform="rotate(-22 -5.07577 43.1031)"
+            fill="#A72161"
+            fill-opacity="0.37"
+          />
+          <circle
+            cx="61.6381"
+            cy="14.3545"
+            r="23.7214"
+            transform="rotate(-22 61.6381 14.3545)"
+            fill="#A72161"
+            fill-opacity="0.37"
+          />
+        </g>
+      </svg>
+    </router-link>
 
     <Search />
     <div class="icon-group">
@@ -45,7 +144,7 @@
         :showBadge="true"
       ></MenuTextButton>
     </div>
-  </div>
+  </header>
 </template>
 
 <script>
@@ -55,34 +154,23 @@ import Search from "../components/Search.vue";
 import MenuTextButton from "./MenuTextButton.vue";
 
 export default {
-  data() {
-    return {
-      isPanelOpen: false,
-      isMobile: false,
-    };
-  },
-  created: {},
-  methods: {
-    togglePanel() {
-      this.isPanelOpen = !this.isPanelOpen;
-    },
-    checkMobile() {
-      this.isMobile = window.innerWidth <= 768;
-    },
-  },
   components: {
     Search,
     MenuTextButton,
   },
+  data() {
+    return {
+      isPanelOpen: false,
+    };
+  },
   computed: {
     ...mapState(productStore, ["cartState"]),
   },
-  created() {
-    this.checkMobile();
-    window.addEventListener("resize", this.checkMobile);
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.checkMobile);
+
+  methods: {
+    toggleMobilePanel() {
+      this.isPanelOpen = !this.isPanelOpen;
+    },
   },
 };
 </script>
@@ -92,19 +180,11 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2.2rem;
   margin: 2rem 0 2rem 0;
   border: solid rgba(167, 33, 97, 0.37);
   border-radius: 50px;
-}
-
-.header-left {
-  display: flex;
-}
-
-.link {
-  text-decoration: none;
-  color: black;
+  transition: 0.5s ease all;
+  padding: 0 2rem;
 }
 
 .search-icon {
@@ -117,10 +197,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 30px;
+  gap: 70px;
   padding: 0 2rem;
   list-style: none;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .cart-bar {
@@ -145,25 +225,61 @@ export default {
   font-size: 1.2rem;
 }
 
-.panel {
-  transform-origin: top;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
+.panel-item {
+  list-style-type: none;
 }
-.panel.active {
-  max-height: 100px;
+.brand-logo {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
-@media (max-width: 100%) {
-  .topbar-menu button {
-    display: block;
+.mobile-brand-logo {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  border-radius: 50px;
+}
+@media screen and (max-width: 750px) {
+  .header-group {
+    display: none;
   }
+  .brand-logo {
+    display: none;
+  }
+  .link {
+    display: none;
+  }
+}
 
-  .panel-container {
-    position: absolute;
-    top: 40px;
-    left: 0;
+.dropdown-panel {
+  float: left;
+  position: absolute;
+  z-index: 1;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  list-style: none;
+}
+@media screen and (max-width: 750px) {
+  .dropdown-panel {
+    float: none;
     width: 100%;
   }
+}
+@media screen and (min-width: 750px) {
+  .mobile-brand-logo {
+    display: none;
+  }
+  .dropdown-menu {
+    display: none;
+  }
+}
+
+.dropdown-menu {
+  position: relative;
 }
 </style>
