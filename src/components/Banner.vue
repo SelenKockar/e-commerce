@@ -27,6 +27,7 @@
 
 .hero-box {
   padding-left: 2.7rem;
+  padding-right: 2.7rem;
   padding-bottom: 1.5rem;
 }
 .hero-text {
@@ -35,7 +36,8 @@
   font-size: 2rem;
   font-style: italic;
   line-height: medium;
-  width: 27rem;
+  width: 100%;
+  max-width: 27rem;
 }
 
 .shop-button {
@@ -70,5 +72,11 @@
   width: 28rem;
   height: 100%;
   border-radius: 0 1.4rem 1.5rem 9.7rem;
+}
+
+@media screen and (max-width: 750px) {
+  .banner-image {
+    display: none;
+  }
 }
 </style>

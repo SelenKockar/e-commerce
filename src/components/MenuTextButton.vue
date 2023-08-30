@@ -1,14 +1,17 @@
 <template>
   <div class="cart-bar">
-    <i :class="icon"></i>
+    <div class="carticon-group">
+      <i class="icon-bar" :class="icon"></i>
+      <span v-if="showBadge" class="cart-badge">{{ cartState }}</span>
+    </div>
+
     <h3 class="cart">{{ text }}</h3>
-    <h4 v-if="showBadge" class="cart-badge">{{ cartState }}</h4>
   </div>
 </template>
 
 <script>
 import { productStore } from "../store/store";
-import { mapState, mapActions } from "pinia";
+import { mapState } from "pinia";
 
 export default {
   props: {
@@ -33,46 +36,40 @@ export default {
   computed: {
     ...mapState(productStore, ["cartState"]),
   },
-  methods: {
-    ...mapActions(productStore, ["increment"]),
-    goProductDetail(id) {
-      this.$router.push({
-        name: "Product",
-        query: { id },
-      });
-    },
-  },
 };
 </script>
 <style>
 .cart-bar {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 3px;
 }
-.pi-user {
-  font-size: 15px;
-  border: solid 0.5px;
-  border-radius: 15px;
-  padding: 2px;
-  margin-left: 10px;
-  margin-right: 4.95px;
-}
-.pi-shopping-cart {
-  margin-right: 6.23px;
-  font-size: 20px;
-}
+
 .cart-badge {
-  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
-  width: 0.5rem;
-  height: 0.5rem;
-  margin-left: 0.5rem;
-  background-color: rgba(167, 33, 97, 0.7);
-  color: white;
+  font-size: 0.6rem;
+  padding: 0.2rem;
+  background-color: rgba(167, 33, 97, 1);
   border-radius: 50%;
-  padding: 0.5rem;
+  width: 0.4rem;
+  height: 0.3rem;
+  color: white;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display: flex;
+}
+.carticon-group {
+  position: relative;
+}
+
+@media screen and (max-width: 750px) {
+  .cart {
+    display: none;
+  }
+}
+.cart {
+  font-weight: 400;
 }
 </style>

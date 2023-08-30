@@ -30,7 +30,7 @@ export const productStore = defineStore("productStore", {
       return this.products.find((p) => p.id === +id);
 
     },
-    incrementCartState (){S
+    incrementCartState (){
       this.cartState++;
     },
     goProductDetail(id) {

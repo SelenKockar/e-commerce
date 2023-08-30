@@ -18,9 +18,16 @@
 
 <script>
 import { productStore } from "../store/store";
-import { mapState, mapActions } from "pinia";
+import { mapActions } from "pinia";
 
 export default {
+  data() {
+    return {
+      product: {},
+      id: this.$route.params.id,
+      cartState: 0,
+    };
+  },
   props: {
     _product: {
       type: Object,
@@ -44,11 +51,12 @@ export default {
   display: flex;
   flex-wrap: wrap;
   margin-left: 17px;
+  align-items: center;
 }
 .product-container {
   display: flex;
   width: 200px;
-  align-items: flex-start;
+  align-items: center;
   gap: 20px;
   flex-direction: column;
   background-color: white;
@@ -98,5 +106,6 @@ export default {
 .button-section {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 </style>

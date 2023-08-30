@@ -1,6 +1,6 @@
 // Search.vue
 <template>
-  <div class="icon-container">
+  <div class="search-container">
     <input
       v-model="searchTerm"
       @input="updateSearchTerm(searchTerm)"
@@ -23,7 +23,6 @@ export default {
     };
   },
   methods: {
-    // emit
     ...mapActions(productStore, ["updateSearchTerm"]),
   },
   computed: {
@@ -33,7 +32,7 @@ export default {
 </script>
 
 <style scoped>
-.icon-container {
+.search-container {
   display: flex;
   align-items: center;
   border: 1px solid black;
@@ -41,6 +40,11 @@ export default {
   border-radius: 10px;
   background-color: #fff;
   width: 300px;
+}
+@media screen and (max-width: 750px) {
+  .search-container {
+    display: none;
+  }
 }
 
 .search-box {
